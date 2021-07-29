@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
 
-from .models import Question
+from .models import Question, Choice
 
 def create_question(question_text, days_from_now):
     """
@@ -109,6 +109,56 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 404)
+
+
+class QuestionResultsViewTests(TestCase):
+    
+    def test_past_question(self):
+        """
+        The results view of a question with a pub_date in the past displays the
+        question's results page.
+        """
+        past_question = create_question(question_text="Past question.",
+                days_from_now=-5)
+        url = reverse('polls:results', args=(past_question.id,))
+        response = self.client.get(url)
+
+        self.assertContains(response, past_question.question_text)
+
+    def test_future_question(self):
+        """
+        The results view of a question with a pub_date in the future returns a
+        404 (Not Found) HTTP status code.
+        """
+        future_question = create_question(question_text='Future question.',
+                days_from_now=5)
+        url = reverse('polls:results', args=(future_question.id,))
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_question_with_votes(self):
+        """
+        The results view of a question with votes shows the votes.
+        """
+        question = create_question(question_text="Question.",
+                days_from_now=-5)
+        # Should create a method for this like create_question
+        choice = Choice.objects.create(question=question, choice_text="Choice")
+        url = reverse('polls:results', args=(question.id,))
+        response = self.client.get(url)
+
+        # Result contains the choice votes
+        self.assertContains(response,
+                choice.votes
+                )
+
+    def test_question_with_no_choices(self):
+        """
+        PLACEHOLDER.
+        A question with no choices should display a 404 status.
+        """
+        pass
 
 
 class QuestionModelTests(TestCase):
