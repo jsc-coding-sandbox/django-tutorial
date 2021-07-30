@@ -1,0 +1,66 @@
+body {
+  background-color: #000000;
+  color: #CCCCCC;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+main {
+  position: relative;
+  border: 2px solid #EEEEEE;
+  background-color: #222233;
+  max-width: 480px;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+header {
+  position: relative;
+}
+
+/* Yep I know this is positioned weirdly AND has weird resize behaviour...
+ * WIP! */
+
+header img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+a {
+  color: cyan;
+}
+a:visited {
+  color: white;
+}
+
+#detail-fieldset {
+  background-color: #444455;
+}
+
+#detail-vote-btn {
+  width: 100%;
+  height: 50px;
+  background-color: #666666;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* ToDo: can't figure out how to get linebreaks between the h1 and between each
+ * result */
+
+.result-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.result-list-items {
+/*  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;*/
+  width: 100%;
+}

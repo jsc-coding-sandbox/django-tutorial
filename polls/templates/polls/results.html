@@ -2,17 +2,26 @@
 <html>
   <head>
     <title>Vote Results for "{{ question.question_text }}"</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
   </head>
 
   <body>
-    <h1>{{ question.question_text }}</h1>
-    <ul>
-      {% for choice in question.choice_set.all %}
-        <!-- Pluralize decides to add an "s" if there is zero or more than one vote -->
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-      {% endfor %}
-    </ul>
+    <!-- Technically I should have a "base template" with this on each page -->
+    <header>
+      <img src="{% static 'polls/img/logo.png' %}" alt="Cheapo logo"></img>
+    </header>
 
-    <a href="{% url 'polls:detail' question.id %}">Click here to vote again.</a>
+    <main>
+      <h1>{{ question.question_text }}</h1>
+      <ul class="result-list">
+        {% for choice in question.choice_set.all %}
+          <!-- Pluralize decides to add an "s" if there is zero or more than one vote -->
+          <li class="result-list-items">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+      </ul>
+
+      <a href="{% url 'polls:detail' question.id %}">Click here to vote again.</a>
+    </main>
   </body>
 </html>
