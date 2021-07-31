@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -10,10 +11,19 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    # This decorator sets up display for the admin interface for the following
+    # function.
+    @admin.display(
+            boolean=True,
+            ordering='pub_date',
+            description='Published recently?',
+            )
     def was_published_recently(self):
+        """
+        Check that pub_date is between 24hrs prior to now, and now.
+        i.e. at most 24 hours ago, but not in the future.
+        """
         now = timezone.now()
-        # Check that pub_date is between 24hrs prior to now, and now.
-        # i.e. at most 24 hours ago, but not in the future.
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 class Choice(models.Model):
