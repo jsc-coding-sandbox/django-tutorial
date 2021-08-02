@@ -2,28 +2,28 @@ body {
   background-color: #000000;
   color: #CCCCCC;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center; 
 }
 
 main {
-  position: relative;
   border: 2px solid #EEEEEE;
   background-color: #222233;
   max-width: 480px;
   width: 100%;
   padding: 10px 10px 10px 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 
 header {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  min-width: 156px;
 }
-
-/* Yep I know this is positioned weirdly AND has weird resize behaviour...
- * WIP! */
 
 header img {
   max-height: 100%;
@@ -49,18 +49,10 @@ a:visited {
   font-weight: bold;
 }
 
-/* ToDo: can't figure out how to get linebreaks between the h1 and between each
- * result */
 
 .result-list {
-  display: flex;
-  flex-direction: row;
 }
 
 .result-list-items {
-/*  display: flex;
-  flex-basis: 100%;
-  flex-wrap: wrap;
-  flex-direction: row;*/
   width: 100%;
 }
