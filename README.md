@@ -5,6 +5,7 @@ The end result is an app that polls users and records the results.
 - Python
 - Django
 - A MySQL or MariaDB server
+- The polls app, available at: [Polls app](https://github.com/jsc-coding-sandbox/django-tutorial-polls)
 
 You can run the MySQL/MariaDB server in a VM if you want, or on a big boy server.
 You will need to create a file "tutorialsite/.env", and give it these values:
