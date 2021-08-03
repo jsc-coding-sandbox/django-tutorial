@@ -9,8 +9,8 @@ body {
 main {
   border: 2px solid #EEEEEE;
   background-color: #222233;
+  width: 80vw;
   max-width: 480px;
-  width: 100%;
   padding: 10px 10px 10px 10px;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,10 @@ a:visited {
   font-weight: bold;
 }
 
+.question-list {
+  display: flex;
+  flex-direction: column;
+}
 
 .result-list {
 }
